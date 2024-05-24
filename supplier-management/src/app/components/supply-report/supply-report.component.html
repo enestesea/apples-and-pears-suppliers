@@ -1,0 +1,34 @@
+<!--<div>-->
+<!--  <h2>Supply Report</h2>-->
+<!--  <div *ngFor="let supply of supplies">-->
+<!--    <h3>Supplier: {{ supply.supplierName }}</h3>-->
+<!--    <ul>-->
+<!--      <li *ngFor="let product of supply.products">-->
+<!--        {{ product.name }} - Quantity: {{ product.quantity }} - Price: {{ product.price }}-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</div>-->
+<div>
+  <h2>Supply Report</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Supplier</th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let entry of supplyReport">
+      <td>{{ entry.supplier }}</td>
+      <td>{{ entry.product }}</td>
+      <td>{{ entry.quantity }}</td>
+      <td>{{ entry.price }}</td>
+      <td>{{ entry.total }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

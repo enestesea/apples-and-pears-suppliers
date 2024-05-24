@@ -1,0 +1,30 @@
+<div>
+  <h2>Supply Entry</h2>
+  <form (ngSubmit)="submitSupply()">
+    <div>
+      <select [(ngModel)]="selectedSupplier">
+        <option *ngFor="let supplier of suppliers" [value]="supplier">{{ supplier }}</option>
+      </select>
+    </div>
+
+    <div *ngFor="let product of suppliedProducts; let i = index">
+      <h3>Product {{ i + 1 }}</h3>
+      <div>
+        <label for="productName{{i}}">Product Name:</label>
+        <input type="text" id="productName{{i}}" [value]="product.name" (input)="updateProductName(product, $event)" required>
+      </div>
+      <div>
+        <label for="quantity{{i}}">Quantity:</label>
+        <input type="number" id="quantity{{i}}" [value]="product.quantity" (input)="updateQuantity(product, $event)" required>
+      </div>
+      <div>
+        <label for="price{{i}}">Price:</label>
+        <input type="number" id="price{{i}}" [value]="product.price" (input)="updatePrice(product, $event)" required>
+      </div>
+      <button type="button" (click)="removeProduct(i)">Remove Product</button>
+    </div>
+
+    <button type="button" (click)="addProduct()">Add Product</button>
+    <button type="submit" [disabled]="!isValid()">Submit Supply</button>
+  </form>
+</div>
