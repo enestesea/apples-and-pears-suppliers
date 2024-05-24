@@ -5,61 +5,65 @@ import { HttpClient } from '@angular/common/http';
 import {Product} from "../models/Product";
 import {Supplier} from "../models/Supplier";
 import {SupplyService} from "../../services/supply.service";
-import {ProductView} from "../models/ProductView";
+import {ProductSupply} from "../models/ProductSupply";
+import {Supply} from "../models/Supply";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatDatepicker, MatDatepickerToggle} from "@angular/material/datepicker";
+import {MatInput} from "@angular/material/input";
 
 @Component({
   selector: 'app-supply-entry',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatLabel, MatDatepickerToggle, MatFormField, MatDatepicker, MatInput],
   templateUrl: './supply-entry.component.html',
   styleUrls: ['./supply-entry.component.css']
 })
 export class SupplyEntryComponent implements OnInit {
   suppliers: Supplier[] = [];
-  products: Product[] = [];
-  selectedSupplier?: Supplier;
-  suppliedProducts: ProductView[] = [];
+  allProducts: Product[] = [];
+  leftProducts: Product[] = [];
+  suppliedProducts: ProductSupply[] = [];
 
-  constructor(private http: HttpClient, private supplyService: SupplyService) {}
+  supplyDate: Date = new Date();
+  selectedSupplier: Supplier = new Supplier();
+  selectedProduct: Product = new Product();
+  formQuantity: number = 0;
+
+  constructor(private supplyService: SupplyService) {}
 
   async ngOnInit() {
+    await this.loadSuppliers();
+    await this.loadProducts();
+    this.leftProducts = this.allProducts;
+  }
+
+  async loadSuppliers() {
     this.suppliers = await this.supplyService.getSuppliers();
-    this.products = await this.supplyService.getProducts();
+  }
+
+  async loadProducts() {
+    this.allProducts = await this.supplyService.getProducts();
   }
 
   addProduct() {
-    this.products.push({ name: '', quantity: 0, price: 0 });
+    let ps = new ProductSupply(this.selectedSupplier, this.selectedProduct, this.formQuantity);
+    console.log(ps);
+    this.suppliedProducts.push(ps);
+    this.resetInputValues();
   }
 
   removeProduct(index: number) {
-    this.products.splice(index, 1);
+    this.suppliedProducts.splice(index, 1);
+  }
+
+  resetInputValues() {
+    this.selectedSupplier = new Supplier();
+    this.selectedProduct = new Product();
+    this.formQuantity = 0;
   }
 
   isValid(): boolean {
-    return this.supplierName.trim() !== '' && this.products.length > 0 && this.products.every(p => p.name.trim() !== '' && p.quantity > 0 && p.price > 0);
-  }
-
-  submitSupply() {
-    if (this.isValid()) {
-      const supply = {
-        supplierName: this.supplierName,
-        products: this.products
-      };
-      this.http.post('/api/supplies', supply).subscribe(response => {
-        console.log('Supply submitted successfully:', response);
-      }, error => {
-        console.error('Error submitting supply:', error);
-      });
-    } else {
-      console.error('Invalid supply data');
-    }
-  }
-
-  updateSupplierName(event: Event) {
-    const target = event.target as HTMLInputElement;
-    if (target) {
-      this.supplierName = target.value;
-    }
+    return true;
   }
 
   updateProductName(product: { name: string, quantity: number, price: number }, event: Event) {
@@ -73,13 +77,6 @@ export class SupplyEntryComponent implements OnInit {
     const target = event.target as HTMLInputElement;
     if (target) {
       product.quantity = +target.value;
-    }
-  }
-
-  updatePrice(product: { name: string, quantity: number, price: number }, event: Event) {
-    const target = event.target as HTMLInputElement;
-    if (target) {
-      product.price = +target.value;
     }
   }
 }

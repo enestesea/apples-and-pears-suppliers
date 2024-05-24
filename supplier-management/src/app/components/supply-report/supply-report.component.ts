@@ -17,13 +17,5 @@ export class SupplyReportComponent implements OnInit {
   }
 
   loadSupplyReport() {
-    this.supplyService.getSupplyReport().subscribe(
-      (data: any[]) => {
-        this.supplyReport = data;
-      },
-      (error: any) => {
-        console.error('Failed to load supply report:', error);
-      }
-    );
   }
 }

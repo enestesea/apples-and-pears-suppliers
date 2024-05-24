@@ -1,30 +1,43 @@
 <div>
   <h2>Supply Entry</h2>
-  <form (ngSubmit)="submitSupply()">
+  <form>
     <div>
       <select [(ngModel)]="selectedSupplier">
-        <option *ngFor="let supplier of suppliers" [value]="supplier">{{ supplier }}</option>
+        <option *ngFor="let supplier of suppliers" [ngValue]="supplier">{{ supplier.name }}</option>
       </select>
     </div>
-
-    <div *ngFor="let product of suppliedProducts; let i = index">
-      <h3>Product {{ i + 1 }}</h3>
-      <div>
-        <label for="productName{{i}}">Product Name:</label>
-        <input type="text" id="productName{{i}}" [value]="product.name" (input)="updateProductName(product, $event)" required>
-      </div>
-      <div>
-        <label for="quantity{{i}}">Quantity:</label>
-        <input type="number" id="quantity{{i}}" [value]="product.quantity" (input)="updateQuantity(product, $event)" required>
-      </div>
-      <div>
-        <label for="price{{i}}">Price:</label>
-        <input type="number" id="price{{i}}" [value]="product.price" (input)="updatePrice(product, $event)" required>
-      </div>
-      <button type="button" (click)="removeProduct(i)">Remove Product</button>
+    <div>
+      <select [(ngModel)]="selectedProduct">
+        <option *ngFor="let product of leftProducts" [ngValue]="product">{{ " Название: " + product.name}}</option>
+      </select>
     </div>
-
+    <div>
+      <label for="quantity">Количество</label>
+      <input type="number" id="quantity" [(ngModel)]="formQuantity">
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Дата поставки</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="supplyDate" id="supplyDate" name="supplyDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
     <button type="button" (click)="addProduct()">Add Product</button>
     <button type="submit" [disabled]="!isValid()">Submit Supply</button>
   </form>
+
+    <div *ngFor="let suppliedProduct of suppliedProducts; let i = index">
+      <h3>Product supply {{ i + 1 }}</h3>
+      <div>
+        <div>Supplier name: {{suppliedProduct.supplier.name}}</div>
+      </div>
+      <div>
+        <div>Name: {{suppliedProduct.product.name}} Type: {{suppliedProduct.product.type}}</div>
+      </div>
+      <div>
+        <div>Quantity: {{suppliedProduct.quantity}}</div>
+      </div>
+      <button type="button" (click)="removeProduct(i)">Remove Product</button>
+    </div>
 </div>

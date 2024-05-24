@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/suppliers")
+@RequestMapping("/api/suppliers")
 public class SupplierController {
 
     private final SupplierService supplierService;
@@ -20,10 +20,10 @@ public class SupplierController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SupplierDTO>> getAllSuppliers() {
+    public List<SupplierDTO> getAllSuppliers() {
         final List<Supplier> suppliers = supplierService.getAllSuppliers();
         final List<SupplierDTO> supplierDTOs = SupplierMapper.toDTOs(suppliers);
-        return ResponseEntity.ok(supplierDTOs);
+        return supplierDTOs;
     }
 
     @PostMapping

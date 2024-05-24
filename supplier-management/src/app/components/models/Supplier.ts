@@ -1,4 +1,5 @@
-export interface Supplier {
-  id: number;
-  name: string;
+export class Supplier {
+  constructor(public id?: number, public name?: string) {
+  }
+
 }

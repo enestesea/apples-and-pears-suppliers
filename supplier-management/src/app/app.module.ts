@@ -12,7 +12,7 @@ import {SupplyEntryComponent} from "./components/supply-entry/supply-entry.compo
   declarations: [
     AppComponent,
     SupplyEntryComponent,
-    SupplyReportComponent
+    SupplyReportComponent,
   ],
   imports: [
     BrowserModule,
