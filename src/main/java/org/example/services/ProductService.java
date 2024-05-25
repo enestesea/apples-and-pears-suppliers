@@ -7,36 +7,70 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Сервис для работы с продуктами
+ */
 @Service
 public class ProductService {
 
     private final ProductRepository productRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(final ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getAllProducts() {
+    /**
+     * Получить список всех продуктов
+     *
+     * @return список всех продуктов
+     */
+    public final List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    public Product getProductById(Long id) {
+    /**
+     * Получить продукт по его идентификатору
+     *
+     * @param id идентификатор продукта
+     * @return продукт с указанным идентификатором
+     * @throws IllegalArgumentException если продукт с указанным идентификатором не найден
+     */
+    public final Product getProductById(final Long id) {
         return productRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Product not found with id: " + id));
     }
 
-    public Product addProduct(Product product) {
+    /**
+     * Добавить новый продукт
+     *
+     * @param product новый продукт
+     * @return сохраненный продукт
+     */
+    public final Product addProduct(final Product product) {
         return productRepository.save(product);
     }
 
-    public Product updateProduct(Long id, Product product) {
+    /**
+     * Обновить информацию о продукте
+     *
+     * @param id      идентификатор продукта, который нужно обновить
+     * @param product новая информация о продукте
+     * @return обновленный продукт
+     * @throws IllegalArgumentException если продукт с указанным идентификатором не найден
+     */
+    public final Product updateProduct(final Long id, final Product product) {
         Product existingProduct = getProductById(id);
         existingProduct.setName(product.getName());
         return productRepository.save(existingProduct);
     }
 
-    public void deleteProduct(Long id) {
+    /**
+     * Удалить продукт по его идентификатору
+     *
+     * @param id идентификатор продукта, который нужно удалить
+     */
+    public final void deleteProduct(final Long id) {
         productRepository.deleteById(id);
     }
 }

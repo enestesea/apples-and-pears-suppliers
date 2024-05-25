@@ -1,22 +1,28 @@
 package org.example.mappers;
 
-import org.example.dtos.ProductDTO;
 import org.example.dtos.SupplyDTO;
-import org.example.models.Product;
 import org.example.models.Supply;
-import org.example.models.Type;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Класс-маппер для преобразования объектов Supply в SupplyDTO и наоборот
+ */
 public class SupplyMapper {
 
-    public static SupplyDTO toDTO(Supply supply) {
+    /**
+     * Преобразовать объект Supply в SupplyDTO
+     *
+     * @param supply объект Supply
+     * @return объект SupplyDTO
+     */
+    public static SupplyDTO toDTO(final Supply supply) {
         if (supply == null) {
             return null;
         }
 
-        SupplyDTO supplyDTO = new SupplyDTO();
+        final SupplyDTO supplyDTO = new SupplyDTO();
         supplyDTO.setId(supply.getId());
         supplyDTO.setQuantity(supply.getQuantity());
         supplyDTO.setSupplyDate(supply.getSupplyDate());
@@ -26,12 +32,18 @@ public class SupplyMapper {
         return supplyDTO;
     }
 
-    public static Supply toEntity(SupplyDTO supplyDTO) {
+    /**
+     * Преобразовать объект SupplyDTO в Supply.
+     *
+     * @param supplyDTO объект SupplyDTO
+     * @return объект Supply
+     */
+    public static Supply toEntity(final SupplyDTO supplyDTO) {
         if (supplyDTO == null) {
             return null;
         }
 
-        Supply supply = new Supply();
+        final Supply supply = new Supply();
         supply.setId(supplyDTO.getId());
         supply.setQuantity(supplyDTO.getQuantity());
         supply.setSupplyDate(supplyDTO.getSupplyDate());
@@ -41,12 +53,27 @@ public class SupplyMapper {
         return supply;
     }
 
-    public static List<SupplyDTO> toDTOs(List<Supply> supplys) {
-        List<SupplyDTO> supplyDTOs = supplys.stream()
+    /**
+     * Преобразовать список объектов Supply в список объектов SupplyDTO.
+     *
+     * @param supplies список объектов Supply
+     * @return список объектов SupplyDTO
+     */
+    public static List<SupplyDTO> toDTOs(final List<Supply> supplies) {
+        return supplies.stream()
                 .map(SupplyMapper::toDTO)
                 .collect(Collectors.toList());
-        return supplyDTOs;
+    }
 
+    /**
+     * Преобразовать список объектов SupplyDTO в список объектов Supply.
+     *
+     * @param supplies список объектов SupplyDTO
+     * @return список объектов Supply
+     */
+    public static List<Supply> toEntities(List<SupplyDTO> supplies) {
+        return supplies.stream()
+                .map(SupplyMapper::toEntity)
+                .collect(Collectors.toList());
     }
 }
-

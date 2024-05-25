@@ -1,44 +1,61 @@
 package org.example.mappers;
 
-import org.example.dtos.ProductDTO;
 import org.example.dtos.SupplierDTO;
-import org.example.models.Product;
 import org.example.models.Supplier;
-import org.example.models.Type;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Класс-маппер для преобразования объектов Supplier в SupplierDTO и наоборот
+ */
 @Component
 public class SupplierMapper {
 
-    public static SupplierDTO toDTO(Supplier supplier) {
+    /**
+     * Преобразовать объект Supplier в SupplierDTO
+     *
+     * @param supplier объект Supplier
+     * @return объект SupplierDTO
+     */
+    public static SupplierDTO toDTO(final Supplier supplier) {
         if (supplier == null) {
             return null;
         }
-        SupplierDTO dto = new SupplierDTO();
+        final SupplierDTO dto = new SupplierDTO();
         dto.setId(supplier.getId());
         dto.setName(supplier.getName());
         return dto;
     }
-    public static Supplier toEntity(SupplierDTO supplierDTO) {
+
+    /**
+     * Преобразовать объект SupplierDTO в Supplier
+     *
+     * @param supplierDTO объект SupplierDTO
+     * @return объект Supplier
+     */
+    public static Supplier toEntity(final SupplierDTO supplierDTO) {
         if (supplierDTO == null) {
             return null;
         }
 
-        Supplier supplier = new Supplier();
+        final Supplier supplier = new Supplier();
         supplier.setId(supplierDTO.getId());
         supplier.setName(supplierDTO.getName());
 
         return supplier;
     }
-    public static List<SupplierDTO> toDTOs(List<Supplier> suppliers) {
-        List<SupplierDTO> supplierDTOS = suppliers.stream()
+
+    /**
+     * Преобразовать список объектов Supplier в список объектов SupplierDTO
+     *
+     * @param suppliers список объектов Supplier
+     * @return список объектов SupplierDTO
+     */
+    public static List<SupplierDTO> toDTOs(final List<Supplier> suppliers) {
+        return suppliers.stream()
                 .map(SupplierMapper::toDTO)
                 .collect(Collectors.toList());
-        return supplierDTOS;
-
     }
 }
-

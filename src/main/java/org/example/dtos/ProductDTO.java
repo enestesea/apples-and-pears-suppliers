@@ -1,5 +1,8 @@
 package org.example.dtos;
 
+/**
+ * Этот класс используется для передачи данных о продукте
+ */
 public class ProductDTO {
 
     private Long id;
@@ -9,6 +12,13 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
+    /**
+     * Конструктор для создания объекта ProductDTO с указанными значениями
+     *
+     * @param id   идентификатор продукта
+     * @param name название продукта
+     * @param type тип продукта
+     */
     public ProductDTO(Long id, String name, String type) {
         this.id = id;
         this.name = name;
@@ -39,4 +49,3 @@ public class ProductDTO {
         this.type = type;
     }
 }
-

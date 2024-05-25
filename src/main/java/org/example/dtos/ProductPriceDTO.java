@@ -1,15 +1,19 @@
 package org.example.dtos;
 
-import java.time.LocalDate;
-
+import java.util.Date;
+/**
+ * DTO для представления информации о ценах
+ * Этот класс используется для передачи данных о ценах на разные продукты
+ * от разных поставщиков за разные промежутки времени
+ */
 public class ProductPriceDTO {
 
     private Long id;
     private Long supplierId;
     private Long productId;
     private double price;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Date startDate;
+    private Date endDate;
 
     public ProductPriceDTO() {
     }
@@ -46,19 +50,19 @@ public class ProductPriceDTO {
         this.price = price;
     }
 
-    public LocalDate getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 }

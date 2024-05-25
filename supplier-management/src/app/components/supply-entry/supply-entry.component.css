@@ -1,95 +1,71 @@
-form {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
+.supply-entry-container {
+  margin: 20px;
 }
 
-form h2 {
-  text-align: center;
-  color: #333;
+.entry-title {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-form div {
-  margin-bottom: 15px;
+.form-group {
+  margin-bottom: 20px;
 }
 
-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #555;
-}
-
-form input[type="text"],
-form input[type="number"] {
-  width: calc(100% - 12px);
+.form-control {
+  width: 100%;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #ced4da;
   border-radius: 4px;
-  box-sizing: border-box;
 }
 
-form button {
-  display: inline-block;
-  margin-right: 10px;
-  padding: 10px 20px;
-  border: none;
+.btn {
+  padding: 8px 16px;
   border-radius: 4px;
-  background-color: #007bff;
-  color: white;
-  font-size: 14px;
   cursor: pointer;
 }
 
-form button[type="button"] {
-  background-color: #6c757d;
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
 }
 
-form button[type="submit"]:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+.btn-success {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto ;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
 }
 
-form button[type="button"]:hover,
-form button[type="submit"]:hover:not(:disabled) {
-  background-color: #0056b3;
-}
-
-form button[type="button"]:hover {
-  background-color: #5a6268;
-}
-
-form button[type="button"]:last-of-type {
+.btn-danger {
   background-color: #dc3545;
-  margin-right: 0;
+  color: #fff;
+  border: none;
 }
 
-form button[type="button"]:last-of-type:hover {
-  background-color: #c82333;
-}
-
-h3 {
-  margin-top: 20px;
-  color: #333;
-}
-
-input[type="text"],
-input[type="number"] {
-  display: block;
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
+.supplied-product {
   border: 1px solid #ddd;
   border-radius: 4px;
+  padding: 20px;
+  margin-top: 20px;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+.product-title {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
+
+.product-info {
+  margin-bottom: 10px;
+}
+
+.info-label {
+  font-weight: bold;
+}
+
+.info-value {
+  margin-left: 10px;
+}
+

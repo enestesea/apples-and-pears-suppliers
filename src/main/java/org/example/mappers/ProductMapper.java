@@ -7,39 +7,58 @@ import org.example.models.Type;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Класс-маппер для преобразования объектов Product в ProductDTO и наоборот
+ */
 public class ProductMapper {
 
-    public static ProductDTO toDTO(Product product) {
+    /**
+     * Преобразовать объект Product в ProductDTO
+     *
+     * @param product объект Product
+     * @return объект ProductDTO
+     */
+    public static ProductDTO toDTO(final Product product) {
         if (product == null) {
             return null;
         }
 
-        ProductDTO productDTO = new ProductDTO();
+        final ProductDTO productDTO = new ProductDTO();
         productDTO.setId(product.getId());
         productDTO.setName(product.getName());
-        productDTO.setType(product.getType().name()); // Assuming Type is an enum
+        productDTO.setType(product.getType().name()); // Предполагается, что Type является перечислением
 
         return productDTO;
     }
 
-    public static Product toEntity(ProductDTO productDTO) {
+    /**
+     * Преобразовать объект ProductDTO в Product
+     *
+     * @param productDTO объект ProductDTO
+     * @return объект Product
+     */
+    public static Product toEntity(final ProductDTO productDTO) {
         if (productDTO == null) {
             return null;
         }
 
-        Product product = new Product();
+        final Product product = new Product();
         product.setId(productDTO.getId());
         product.setName(productDTO.getName());
-        product.setType(Type.valueOf(productDTO.getType())); // Assuming Type is an enum
+        product.setType(Type.valueOf(productDTO.getType())); // Предполагается, что Type является перечислением
 
         return product;
     }
 
-    public static List<ProductDTO> toDTOs(List<Product> products) {
-        List<ProductDTO> productDTOs = products.stream()
+    /**
+     * Преобразовать список объектов Product в список объектов ProductDTO
+     *
+     * @param products список объектов Product
+     * @return список объектов ProductDTO
+     */
+    public static List<ProductDTO> toDTOs(final List<Product> products) {
+        return products.stream()
                 .map(ProductMapper::toDTO)
                 .collect(Collectors.toList());
-        return productDTOs;
-
     }
 }

@@ -1,43 +1,51 @@
-<div>
-  <h2>Supply Entry</h2>
+<div class="supply-entry-container">
+  <h2 class="entry-title">Ввод поставки</h2>
   <form>
-    <div>
-      <select [(ngModel)]="selectedSupplier">
+    <button class="btn btn-success" type="submit" (click)="submitSupply()">Отправить поставку</button>
+    <div class="form-group">
+      <label>Поставщик:</label>
+      <select class="form-control" [(ngModel)]="selectedSupplier">
         <option *ngFor="let supplier of suppliers" [ngValue]="supplier">{{ supplier.name }}</option>
       </select>
     </div>
-    <div>
-      <select [(ngModel)]="selectedProduct">
-        <option *ngFor="let product of leftProducts" [ngValue]="product">{{ " Название: " + product.name}}</option>
+    <div class="form-group">
+      <label>Продукт:</label>
+      <select class="form-control" [(ngModel)]="selectedProduct">
+        <option *ngFor="let product of leftProducts" [ngValue]="product">{{ product.name }}</option>
       </select>
     </div>
-    <div>
-      <label for="quantity">Количество</label>
-      <input type="number" id="quantity" [(ngModel)]="formQuantity">
+    <div class="form-group">
+      <label for="supplyDate">Дата поставки:</label>
+      <input class="form-control" type="date" id="supplyDate" [(ngModel)]="formDate">
     </div>
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Дата поставки</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="supplyDate" id="supplyDate" name="supplyDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+    <div class="form-group">
+      <label for="quantity">Количество:</label>
+      <input class="form-control" type="number" id="quantity" [(ngModel)]="formQuantity">
     </div>
-    <button type="button" (click)="addProduct()">Add Product</button>
-    <button type="submit" [disabled]="!isValid()">Submit Supply</button>
-  </form>
 
-    <div *ngFor="let suppliedProduct of suppliedProducts; let i = index">
-      <h3>Product supply {{ i + 1 }}</h3>
-      <div>
-        <div>Supplier name: {{suppliedProduct.supplier.name}}</div>
-      </div>
-      <div>
-        <div>Name: {{suppliedProduct.product.name}} Type: {{suppliedProduct.product.type}}</div>
-      </div>
-      <div>
-        <div>Quantity: {{suppliedProduct.quantity}}</div>
-      </div>
-      <button type="button" (click)="removeProduct(i)">Remove Product</button>
+    <button class="btn btn-primary" type="button" (click)="addProduct()">Добавить товар</button>
+    </form>
+
+  <div *ngFor="let suppliedProduct of suppliedProducts; let i = index" class="supplied-product">
+    <h3 class="product-title">Карточка поставленного товара {{ i + 1 }}</h3>
+    <div class="product-info">
+      <div class="info-label">Поставщик:</div>
+      <div class="info-value">{{ suppliedProduct.supplier.name }}</div>
     </div>
+    <div class="product-info">
+      <div class="info-label">Название:</div>
+      <div class="info-value">{{ suppliedProduct.product.name }}</div>
+      <div class="info-label">Тип:</div>
+      <div class="info-value">{{ suppliedProduct.product.type }}</div>
+    </div>
+    <div class="product-info">
+      <div class="info-label">Количество:</div>
+      <div class="info-value">{{ suppliedProduct.quantity }}</div>
+    </div>
+    <div class="product-info">
+      <div class="info-label">Время поставки:</div>
+      <div class="info-value">{{ suppliedProduct.supplyDate }}</div>
+    </div>
+    <button class="btn btn-danger" type="button" (click)="removeProduct(i)">Удалить товар</button>
+  </div>
 </div>

@@ -1,5 +1,7 @@
 package org.example.dtos;
-
+/**
+ * Этот класс используется для передачи данных о поставщике
+ */
 public class SupplierDTO {
 
     private Long id;

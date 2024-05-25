@@ -2,6 +2,9 @@ package org.example.models;
 
 import javax.persistence.*;
 
+/**
+ * Класс продукта связанный с таблицей products
+ */
 @Entity
 @Table(name = "products")
 public class Product {
