@@ -10,17 +10,16 @@ import {SupplyEntryComponent} from "./components/supply-entry/supply-entry.compo
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SupplyEntryComponent,
-    SupplyReportComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    SupplyEntryComponent,
+    AppComponent
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
 export class AppModule { }

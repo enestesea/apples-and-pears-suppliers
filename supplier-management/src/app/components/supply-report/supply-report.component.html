@@ -1,34 +1,38 @@
-<!--&lt;!&ndash;<div>&ndash;&gt;-->
-<!--&lt;!&ndash;  <h2>Supply Report</h2>&ndash;&gt;-->
-<!--&lt;!&ndash;  <div *ngFor="let supply of supplies">&ndash;&gt;-->
-<!--&lt;!&ndash;    <h3>Supplier: {{ supply.supplierName }}</h3>&ndash;&gt;-->
-<!--&lt;!&ndash;    <ul>&ndash;&gt;-->
-<!--&lt;!&ndash;      <li *ngFor="let product of supply.products">&ndash;&gt;-->
-<!--&lt;!&ndash;        {{ product.name }} - Quantity: {{ product.quantity }} - Price: {{ product.price }}&ndash;&gt;-->
-<!--&lt;!&ndash;      </li>&ndash;&gt;-->
-<!--&lt;!&ndash;    </ul>&ndash;&gt;-->
-<!--&lt;!&ndash;  </div>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--<div>-->
-<!--  <h2>Supply Report</h2>-->
-<!--  <table>-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--      <th>Supplier</th>-->
-<!--      <th>Product</th>-->
-<!--      <th>Quantity</th>-->
-<!--      <th>Price</th>-->
-<!--      <th>Total</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr *ngFor="let entry of supplyReport">-->
-<!--      <td>{{ entry.supplier }}</td>-->
-<!--      <td>{{ entry.product }}</td>-->
-<!--      <td>{{ entry.quantity }}</td>-->
-<!--      <td>{{ entry.price }}</td>-->
-<!--      <td>{{ entry.total }}</td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
-<!--</div>-->
+<div>
+  <h1>Отчет по поставкам</h1>
+  <form (submit)="generateReport()">
+    <div>
+      <label for="startDate">Начальная дата:</label>
+      <input type="date" id="startDate" [(ngModel)]="startDate">
+    </div>
+    <div>
+      <label for="endDate">Конечная дата:</label>
+      <input type="date" id="endDate" [(ngModel)]="endDate">
+    </div>
+    <button type="submit">Сгенерировать отчет</button>
+  </form>
+
+  <div *ngIf="reportData">
+    <h2>Отчет за период с {{ startDate }} по {{ endDate }}</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Поставщик</th>
+        <th>Продукт</th>
+        <th>Количество(Шт)</th>
+        <th>Цена(Руб)</th>
+        <th>Вес(КГ)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let r of reportData">
+        <td>{{ r.supplierName }}</td>
+        <td>{{ r.productName }}</td>
+        <td>{{ r.quantity }}</td>
+        <td>{{ r.price }}</td>
+        <td>{{ r.quantity }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

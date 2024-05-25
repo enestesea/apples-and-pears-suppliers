@@ -1,8 +1,10 @@
 package org.example.models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-
+import java.util.Date;
+/**
+ * Класс поставки одного продукта от одного поставщика в поределенный день связанный с таблицей supplies
+ */
 @Entity
 @Table(name = "supplies")
 public class Supply {
@@ -13,12 +15,12 @@ public class Supply {
 
     private Long supplierId;
 
-
     private Long productId;
 
     private int quantity;
 
-    private LocalDate supplyDate;
+    private Date supplyDate;
+    private double price;
 
     public Supply() {
     }
@@ -54,12 +56,20 @@ public class Supply {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    public double getPrice() {
+        return price;
+    }
 
-    public LocalDate getSupplyDate() {
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+
+    public Date getSupplyDate() {
         return supplyDate;
     }
 
-    public void setSupplyDate(LocalDate supplyDate) {
+    public void setSupplyDate(Date supplyDate) {
         this.supplyDate = supplyDate;
     }
 }

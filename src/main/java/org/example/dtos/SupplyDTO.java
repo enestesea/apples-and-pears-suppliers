@@ -1,14 +1,18 @@
 package org.example.dtos;
 
-import java.time.LocalDate;
-
+import java.util.Date;
+/**
+ * Этот класс используется для передачи данных о поставке вида одного продукта от одного поставщика
+ */
 public class SupplyDTO {
 
     private Long id;
     private Long supplierId;
     private Long productId;
     private int quantity;
-    private LocalDate supplyDate;
+    private double price;
+
+    private Date supplyDate;
 
     public Long getId() {
         return id;
@@ -41,12 +45,20 @@ public class SupplyDTO {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    public double getPrice() {
+        return price;
+    }
 
-    public LocalDate getSupplyDate() {
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+
+    public Date getSupplyDate() {
         return supplyDate;
     }
 
-    public void setSupplyDate(LocalDate supplyDate) {
+    public void setSupplyDate(Date supplyDate) {
         this.supplyDate = supplyDate;
     }
 }

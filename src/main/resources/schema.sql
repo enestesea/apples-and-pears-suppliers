@@ -25,5 +25,7 @@ CREATE TABLE IF NOT EXISTS supplies (
     supplier_id BIGINT NOT NULL,
     product_id BIGINT NOT NULL,
     quantity INT NOT NULL,
-    supply_date DATE NOT NULL
+    supply_date DATE NOT NULL,
+    price FLOAT
+
 );

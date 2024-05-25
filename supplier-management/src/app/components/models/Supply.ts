@@ -5,4 +5,5 @@ export interface Supply {
   product_id: number;
   quantity: number;
   supplyDate: Date;
+  price: number;
 }

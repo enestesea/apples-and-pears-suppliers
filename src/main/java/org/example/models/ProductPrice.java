@@ -1,8 +1,10 @@
 package org.example.models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-
+import java.util.Date;
+/**
+ * Класс цены на продукт от поставщика связанный с таблицей product_prices
+ */
 @Entity
 @Table(name = "product_prices")
 public class ProductPrice {
@@ -17,9 +19,9 @@ public class ProductPrice {
 
     private double price;
 
-    private LocalDate startDate;
+    private Date startDate;
 
-    private LocalDate endDate;
+    private Date endDate;
 
     public ProductPrice() {
     }
@@ -54,19 +56,19 @@ public class ProductPrice {
         this.price = price;
     }
 
-    public LocalDate getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 }

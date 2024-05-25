@@ -1,13 +1,9 @@
 package org.example.models;
 
 import javax.persistence.*;
-import java.util.List;
-
-import javax.persistence.*;
-import java.util.List;
-import javax.persistence.*;
-import java.util.List;
-
+/**
+ * Класс поставщика связанный с таблицей suppliers
+ */
 @Entity
 @Table(name = "suppliers")
 public class Supplier {
