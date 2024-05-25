@@ -1,5 +1,5 @@
 # apples-and-pears-suppliers
-Чтобы запустить проект необходимо запустить SupplierManagementApplication для бэкенда и запустить ng serve из пакпки supplier-management,
+Чтобы запустить проект необходимо запустить SupplierManagementApplication для бэкенда и запустить из папки supplier-management консоль и выполнить в косоли команду "ng serve",
 также необходима БД PostgreSQL c названием contest развернутая на порту 5432 (jdbc:postgresql://localhost:5432/contest)
 
 # ввод поставки
